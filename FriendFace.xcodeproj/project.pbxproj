@@ -11,6 +11,8 @@
 		9E5EE0FE2B3454C500F6710E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5EE0FD2B3454C500F6710E /* ContentView.swift */; };
 		9E5EE1002B3454C500F6710E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E5EE0FF2B3454C500F6710E /* Assets.xcassets */; };
 		9E5EE1032B3454C500F6710E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E5EE1022B3454C500F6710E /* Preview Assets.xcassets */; };
+		9E5EE10A2B34556300F6710E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5EE1092B34556300F6710E /* User.swift */; };
+		9E8353392B34C36B003AF275 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8353382B34C36B003AF275 /* UserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		9E5EE0FD2B3454C500F6710E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9E5EE0FF2B3454C500F6710E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E5EE1022B3454C500F6710E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9E5EE1092B34556300F6710E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9E8353382B34C36B003AF275 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				9E5EE0FB2B3454C500F6710E /* FriendFaceApp.swift */,
 				9E5EE0FD2B3454C500F6710E /* ContentView.swift */,
+				9E8353382B34C36B003AF275 /* UserView.swift */,
+				9E5EE1092B34556300F6710E /* User.swift */,
 				9E5EE0FF2B3454C500F6710E /* Assets.xcassets */,
 				9E5EE1012B3454C500F6710E /* Preview Content */,
 			);
@@ -139,6 +145,8 @@
 			files = (
 				9E5EE0FE2B3454C500F6710E /* ContentView.swift in Sources */,
 				9E5EE0FC2B3454C500F6710E /* FriendFaceApp.swift in Sources */,
+				9E5EE10A2B34556300F6710E /* User.swift in Sources */,
+				9E8353392B34C36B003AF275 /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
