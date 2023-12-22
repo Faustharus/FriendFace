@@ -5,10 +5,12 @@
 //  Created by Damien Chailloleau on 21/12/2023.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-    
+    @Environment (\.modelContext) var modelContext
+    @Query var allUsers: [User]
     @State private var users = [User]()
     
     var body: some View {
@@ -45,7 +47,16 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = ModelContainer(for: User.self, configurations: config)
+        let dummyUser = User(from: <#T##Decoder#>)
+        
+        return ContentView()
+            .modelContainer(for: User.self)
+    } catch {
+        return Text("Failed to show all users: \(error.localizedDescription)")
+    }
 }
 
 // MARK: Functions
@@ -72,6 +83,11 @@ extension ContentView {
         }
         
         task.resume()
+    }
+    
+    func storingUsersData() {
+//        let newExpense = Expenses(name: name, type: type.rawValue, amount: amount)
+//        modelContext.insert(newExpense)
     }
     
 }
