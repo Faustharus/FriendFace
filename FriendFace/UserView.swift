@@ -40,7 +40,7 @@ struct UserView: View {
                 
                 Rectangle()
                     .foregroundStyle(.secondary)
-                    .frame(width: .infinity, height: 3)
+                    .frame(width: 300, height: 3)
                 
                 
                 // MARK: Details Section
@@ -70,7 +70,7 @@ struct UserView: View {
                 
                 Rectangle()
                     .foregroundStyle(.secondary)
-                    .frame(width: .infinity, height: 3)
+                    .frame(width: 300, height: 3)
                 
                 // MARK: Tag Section
                 VStack(spacing: 0) {
@@ -91,7 +91,7 @@ struct UserView: View {
                 
                 Rectangle()
                     .foregroundStyle(.secondary)
-                    .frame(width: .infinity, height: 3)
+                    .frame(width: 300, height: 3)
                 
                 // MARK: About Section
                 VStack {
@@ -104,31 +104,33 @@ struct UserView: View {
                 
                 Rectangle()
                     .foregroundStyle(.secondary)
-                    .frame(width: .infinity, height: 3)
+                    .frame(width: 300, height: 3)
                 
                 // MARK: Friend Section
-//                VStack {
-//                    Text("Friends")
-//                        .font(.title)
-//                    VStack {
-//                        ForEach(user.friends, id: \.id) { item in
-//                            Text(item.name)
-//                        }
-//                    }
-//                }
+                VStack {
+                    Text("Friends")
+                        .font(.title)
+                    VStack {
+                        ForEach(user.friends, id: \.id) { item in
+                            Text(item.name)
+                        }
+                    }
+                }
             }
         }
         .scrollBounceBehavior(.basedOnSize)
     }
 }
 
-//#Preview {
-//    UserView(user: User.init(id: "50a48fa3-2c0f-4397-ac50-64da464f9954", isActive: false, name: "Alford Rodriguez", age: 21, company: "Imkan", email: "alfordrodriguez@imkan.com", address: "907 Nelson Street, Cotopaxi, South Dakota, 5913", about: "Occaecat consequat elit aliquip magna laboris dolore laboris sunt officia adipisicing reprehenderit sunt. Do in proident consectetur labore. Laboris pariatur quis incididunt nostrud labore ad cillum veniam ipsum ullamco. Dolore laborum commodo veniam nisi. Eu ullamco cillum ex nostrud fugiat eu consequat enim cupidatat. Non incididunt fugiat cupidatat reprehenderit nostrud eiusmod eu sit minim do amet qui cupidatat. Elit aliquip nisi ea veniam proident dolore exercitation irure est deserunt.", registered: .now, tags: ["cillum","consequat","deserunt","nostrud","eiusmod","minim","tempor"], friends: [User.Friend.init(id: "91b5be3d-9a19-4ac2-b2ce-89cc41884ed0", name: "Hawkins Patel")]))
-//}
-
-// MARK: Functions & Computed Properties
-extension UserView {
-    
-    
-    
+#Preview {
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: User.self, configurations: config)
+        let dummyUser = User.dummy
+        
+        return UserView(user: dummyUser)
+            .modelContainer(container)
+    } catch {
+        return Text("Failed to show all users: \(error.localizedDescription)")
+    }
 }

@@ -15,7 +15,10 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List(users) { user in
+            Text("Query Data : \(allUsers.count)")
+            Text("Friends Data : \(allUsers[2].friends.count)")
+            Text("DL Data : \(users.count)")
+            List(allUsers) { user in
                 HStack {
                     NavigationLink(value: user) {
                         Image(systemName: "person.crop.circle")
@@ -38,25 +41,23 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("FriendFace")
-            .onAppear(perform: downloadJSONData)
+            .onAppear(perform: allUsers.isEmpty ? downloadJSONData : storingUsersData)
             .navigationDestination(for: User.self) { user in
                 UserView(user: user)
+            }
+            .toolbar {
+                Button {
+                    //storingUsersData(items: allUsers)
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
     }
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = ModelContainer(for: User.self, configurations: config)
-        let dummyUser = User(from: <#T##Decoder#>)
-        
-        return ContentView()
-            .modelContainer(for: User.self)
-    } catch {
-        return Text("Failed to show all users: \(error.localizedDescription)")
-    }
+    ContentView()
 }
 
 // MARK: Functions
@@ -75,7 +76,14 @@ extension ContentView {
                 do {
                     let jsonDecoder = JSONDecoder()
                     jsonDecoder.dateDecodingStrategy = .iso8601
-                    self.users = try jsonDecoder.decode([User].self, from: data)
+                    let allUsers = try jsonDecoder.decode([User].self, from: data)
+                    for user in allUsers {
+                        modelContext.insert(user)
+//                        for friend in allUsers[user.id.count].friends {
+//                            modelContext.insert(friend)
+//                        }
+                    }
+                    //self.users = try jsonDecoder.decode([User].self, from: data)
                 } catch {
                     print("Error decoding JSON Data: \(error)")
                 }
@@ -86,8 +94,19 @@ extension ContentView {
     }
     
     func storingUsersData() {
-//        let newExpense = Expenses(name: name, type: type.rawValue, amount: amount)
-//        modelContext.insert(newExpense)
+//        let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
+//        let container = try? ModelContainer(for: User.self, configurations: configuration)
+        
+//        Task { @MainActor in
+//            users.forEach { user in
+//                let userToSave = container?.mainContext
+//                
+//            }
+//        }
+        
+//        Task { @MainActor in
+//            items.forEach { container?.mainContext.insert($0) }
+//        }
     }
     
 }
