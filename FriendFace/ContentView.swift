@@ -11,13 +11,10 @@ import SwiftUI
 struct ContentView: View {
     @Environment (\.modelContext) var modelContext
     @Query var allUsers: [User]
-    @State private var users = [User]()
+    //@State private var users = [User]()
     
     var body: some View {
         NavigationStack {
-            Text("Query Data : \(allUsers.count)")
-            Text("Friends Data : \(allUsers[2].friends.count)")
-            Text("DL Data : \(users.count)")
             List(allUsers) { user in
                 HStack {
                     NavigationLink(value: user) {
@@ -41,23 +38,19 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("FriendFace")
-            .onAppear(perform: allUsers.isEmpty ? downloadJSONData : storingUsersData)
+            .onAppear(perform: loadDataIfNeeded)
             .navigationDestination(for: User.self) { user in
                 UserView(user: user)
-            }
-            .toolbar {
-                Button {
-                    //storingUsersData(items: allUsers)
-                } label: {
-                    Image(systemName: "plus")
-                }
             }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    let preview = PreviewContainer([User.self])
+    preview.add(items: User.sample(0))
+    return ContentView()
+        .modelContainer(preview.container)
 }
 
 // MARK: Functions
@@ -76,12 +69,14 @@ extension ContentView {
                 do {
                     let jsonDecoder = JSONDecoder()
                     jsonDecoder.dateDecodingStrategy = .iso8601
+                    
                     let allUsers = try jsonDecoder.decode([User].self, from: data)
+                    
                     for user in allUsers {
                         modelContext.insert(user)
-//                        for friend in allUsers[user.id.count].friends {
-//                            modelContext.insert(friend)
-//                        }
+                        for friend in user.friends {
+                            modelContext.insert(friend)
+                        }
                     }
                     //self.users = try jsonDecoder.decode([User].self, from: data)
                 } catch {
@@ -93,20 +88,10 @@ extension ContentView {
         task.resume()
     }
     
-    func storingUsersData() {
-//        let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
-//        let container = try? ModelContainer(for: User.self, configurations: configuration)
-        
-//        Task { @MainActor in
-//            users.forEach { user in
-//                let userToSave = container?.mainContext
-//                
-//            }
-//        }
-        
-//        Task { @MainActor in
-//            items.forEach { container?.mainContext.insert($0) }
-//        }
+    func loadDataIfNeeded() {
+        if allUsers.isEmpty {
+            downloadJSONData()
+        }
     }
     
 }

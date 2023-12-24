@@ -40,4 +40,14 @@ extension Friend {
     static var dummy: Friend {
         .init(id: "1", name: "Jane Doe")
     }
+    
+    static func sample(_ num: Int) -> [Friend] {
+        var friends: [Friend] = []
+        
+        for i in 0 ..< num {
+            friends.append(.init(id: "ID\(i)", name: "Name\(i)"))
+        }
+        
+        return friends
+    }
 }

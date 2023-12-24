@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E301A982B387A04001FA035 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E301A972B387A04001FA035 /* PreviewContainer.swift */; };
 		9E5EE0FC2B3454C500F6710E /* FriendFaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5EE0FB2B3454C500F6710E /* FriendFaceApp.swift */; };
 		9E5EE0FE2B3454C500F6710E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5EE0FD2B3454C500F6710E /* ContentView.swift */; };
 		9E5EE1002B3454C500F6710E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E5EE0FF2B3454C500F6710E /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E301A972B387A04001FA035 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		9E5EE0F82B3454C500F6710E /* FriendFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E5EE0FB2B3454C500F6710E /* FriendFaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFaceApp.swift; sourceTree = "<group>"; };
 		9E5EE0FD2B3454C500F6710E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				9E8353382B34C36B003AF275 /* UserView.swift */,
 				9E5EE1092B34556300F6710E /* User.swift */,
 				9EAF86172B37470600FA686B /* Friend.swift */,
+				9E301A972B387A04001FA035 /* PreviewContainer.swift */,
 				9E5EE0FF2B3454C500F6710E /* Assets.xcassets */,
 				9E5EE1012B3454C500F6710E /* Preview Content */,
 			);
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E301A982B387A04001FA035 /* PreviewContainer.swift in Sources */,
 				9E5EE0FE2B3454C500F6710E /* ContentView.swift in Sources */,
 				9E5EE0FC2B3454C500F6710E /* FriendFaceApp.swift in Sources */,
 				9EAF86182B37470600FA686B /* Friend.swift in Sources */,

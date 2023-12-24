@@ -123,14 +123,9 @@ struct UserView: View {
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: User.self, configurations: config)
-        let dummyUser = User.dummy
-        
-        return UserView(user: dummyUser)
-            .modelContainer(container)
-    } catch {
-        return Text("Failed to show all users: \(error.localizedDescription)")
-    }
+    let preview = PreviewContainer([User.self])
+    let users = User.sample(1)
+    preview.add(items: users)
+    return UserView(user: users[0])
+        .modelContainer(preview.container)
 }
