@@ -10,10 +10,11 @@ import SwiftUI
 
 struct UserView: View {
     @Environment(\.modelContext) var modelContext
+    @Query var allUsers: [User]
     
     let user: User
-    // TODO: $Path Need for the Friends of the User
-    // TODO: Using User.Friend as anchor to the get the info as User for each Friend
+    // TODO: $Path Need for the Friends of the User <- Done ✅
+    // TODO: Using User.Friend as anchor to the get the info as User for each Friend <- Done ✅
     // TODO: Redesigning the UI
     
     var body: some View {
@@ -112,7 +113,13 @@ struct UserView: View {
                         .font(.title)
                     VStack {
                         ForEach(user.friends, id: \.id) { item in
-                            Text(item.name)
+                            if let friendUser = getFriendUserPage(item) {
+                                NavigationLink(destination: UserView(user: friendUser)) {
+                                    Text(item.name)
+                                }
+                            } else {
+                                Text("Friend Not Found")
+                            }
                         }
                     }
                 }
@@ -128,4 +135,15 @@ struct UserView: View {
     preview.add(items: users)
     return UserView(user: users[0])
         .modelContainer(preview.container)
+}
+
+extension UserView {
+    
+    private func getFriendUserPage(_ friend: Friend) -> User? {
+        guard let user = allUsers.first(where: { $0.id == friend.id }) else {
+            return User.dummy
+        }
+        return user
+    }
+    
 }

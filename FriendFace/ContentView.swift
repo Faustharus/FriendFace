@@ -11,10 +11,11 @@ import SwiftUI
 struct ContentView: View {
     @Environment (\.modelContext) var modelContext
     @Query var allUsers: [User]
-    //@State private var users = [User]()
+    
+    @State private var path = [User]()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List(allUsers) { user in
                 HStack {
                     NavigationLink(value: user) {
@@ -78,7 +79,6 @@ extension ContentView {
                             modelContext.insert(friend)
                         }
                     }
-                    //self.users = try jsonDecoder.decode([User].self, from: data)
                 } catch {
                     print("Error decoding JSON Data: \(error)")
                 }
