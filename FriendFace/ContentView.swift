@@ -18,22 +18,31 @@ struct ContentView: View {
         NavigationStack(path: $path) {
             List(allUsers) { user in
                 HStack {
-                    NavigationLink(value: user) {
-                        Image(systemName: "person.crop.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 44)
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text("\(user.name)")
-                                .font(.title)
-                                .fontWeight(.medium)
-                            HStack {
+                    ZStack {
+                        NavigationLink(value: user) {
+                            
+                            ZStack {
                                 Circle()
-                                    .fill(user.isActive ? .green : .red)
-                                    .frame(width: 20)
-                                Text(user.isActive ? "Online" : "Offline")
-                                    .fontWeight(.semibold)
+                                    .stroke(user.isActive ? .green : .red, lineWidth: 2)
+                                    .frame(width: 55)
+                                VStack {
+                                    Image(systemName: "person.crop.circle")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 40)
+                                }
                             }
+                            
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text("\(user.name)")
+                                    .font(.title)
+                                    .fontWeight(.medium)
+                                Text(user.isActive ? "Online" : "Offline")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                
+                            }
+                            
                         }
                     }
                 }
